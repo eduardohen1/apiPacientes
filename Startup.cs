@@ -35,6 +35,14 @@ namespace apiPacientes
             //setar os repositórios
             services.AddTransient<IPacienteRepository, PacienteRepository>();
             services.AddControllers();
+            services.AddCors(
+                options => options.AddDefaultPolicy(
+                    builder => builder
+                                .AllowAnyOrigin()
+                                .AllowAnyMethod()
+                                .AllowAnyHeader()
+                )
+            );
             services.AddMvc();
         }
 
@@ -49,6 +57,8 @@ namespace apiPacientes
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthorization();
 

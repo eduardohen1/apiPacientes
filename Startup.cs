@@ -56,6 +56,7 @@ namespace apiPacientes
             {
                 endpoints.MapControllers();
             });
+            
         }
     }
 }

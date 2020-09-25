@@ -23,6 +23,7 @@ namespace apiPacientes.Controllers
             return "<hr>Paciente: " + id;
         }
         */
+        //[DisableCors()]
         [HttpGet]
         public IEnumerable<Paciente> GetAll(){
             return pacienteRepository.GetAll();
@@ -61,13 +62,13 @@ namespace apiPacientes.Controllers
             return new NoContentResult();
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete]
         public IActionResult Delete(long id){
             var paciente = pacienteRepository.Find(id);
             if(paciente == null)
                 return NotFound();
             pacienteRepository.Remove(id);
-            return new NoContentResult();
+            return new NoContentResult(); //204 o servidor processou a requisição e não há o que ele retornar;
         }
 
     }
